@@ -10,23 +10,25 @@
 // Если введено подходящее количество, то border инпута становится зеленым, если неправильное - красным.
 // Для добавления стилей, используй CSS-классы valid и invalid.
 
-const inpName = document.querySelector('#validation-input');
+const input = document.querySelector('#validation-input');
 
-inpName.addEventListener('input', onCheckNum);
+input.addEventListener('input', onInutChange);
+function onInutChange(e) {
+    const correctLength = this.dataset.length;
+    if (e.currentTarget.value.length < correctLength) {
+        input.classList.add("invalid");
+        input.classList.remove("valid");
 
-function onCheckNum(e) {
-    const correctNum = this.dataset.length;
-    if (e.currentTarget.value.length <= correctNum) {
-        inpName.classList.add('valid');
-        inpName.classList.remove('invalid');  
-    }
-    if (e.currentTarget.value.length === 0) {
-        inpName.classList.remove('valid');
-        inpName.classList.remove('invalid');  
-    }
-    if (e.currentTarget.value.length > correctNum) {
-        inpName.classList.remove('valid');
-        inpName.classList.add('invalid');  
-    }
+    } if (e.currentTarget.value.length == correctLength) {
+        input.classList.add("valid");
+        input.classList.remove("invalid");
 
+    } if (e.currentTarget.value.length === 0) {
+        input.classList.remove("valid");
+        input.classList.remove("invalid");
+
+    } if (e.currentTarget.value.length > correctLength) {
+        input.classList.add("invalid");
+        input.classList.remove("valid");
+    }
 }
